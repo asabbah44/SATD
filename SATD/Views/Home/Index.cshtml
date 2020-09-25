@@ -2,21 +2,39 @@
     ViewBag.Title = "Home Page";
 }
 
-    <div style="width:300px; height:120px" class="center-block">
-        <img src="~/Birzeit_University_logo.png" class="img-responsive" alt="Birzeit University" />
-    </div>
-
+<div style="width:300px; height:120px" class="center-block">
+    <img src="~/Birzeit_University_logo.png" class="img-responsive" alt="Birzeit University" />
+</div>
 <div class="panel panel-default">
     <div class="panel-heading"><h1>Labeling Self-Admitted Technical Debt Comments and Commites</h1></div>
     <div class="panel-body">
+        <section style="border:5px solid #eee">
+            <div class="blockquote text-center">
+                <p class="h4">
+                    To complete the requirement for the Master of Software Engineering program at Birzeit University,
+                    these classifications are part of the master’s thesis preparation, so please help with this work.
+                </p>
+                <P class="text-muted">Gratefully </P>
+            </div>
+
+            <p>
+                <strong>Supervisor:</strong> Dr. Abualseoud Hanani
+            </p>
+            <p>
+                <strong>Student name:</strong> Ahmed Sabbah
+            </p>
+
+        </section>
         <h3>Your task</h3>
         <ol>
             <li>After carefully reading the text below, you should select what type of self-admitted technical debt the should be classified as.</li>
             <li>
                 Choose one of the six labeled from List in the screen (i.e, Design, Defect, Documentation, Requirement, Test or Not technical debt )
             </li>
-            <li> Please be careful, all comments and commits that will presented are
-            classified as technical debt without type by using tools and other studies.</li>
+            <li>
+                Please be careful, all comments and commits that will presented are
+                classified as technical debt without type by using tools and other studies.
+            </li>
             <li>There is no time limit to complete your task, every time you need to repeat the task you will get new inctance </li>
             <li> To avoid frequently present the same comments, you will enter the valid email address </li>
             <li> You can start here : <br /><b style="font-size:x-large"> @Html.ActionLink("Start task", "participantInfo", "Home")</b></li>
@@ -134,14 +152,16 @@
             <li>
                 “// TODO Document the reason for this” - [from Apache Jmeter]
             </li>
-            <li>// Fixme: Only F_SETFL and F_GETFL is current supported //
-            FIXME: Only NONBLOCK flag is supported // FIXME: F_SETFL and F_SETFD are treated as the same thing here.  
-            For the case of dup(fd) we //   should actually have F_SETFL only affect one (it is unclear how well we do, but this TODO //   is here to at least document that we might need to do more work here.  Mostly SETFL is 
-            //   for mode changes which should persist across fork() boundaries.  Since JVM has no fork // 
-            this is not a problem for us.</li>
+            <li>
+                // Fixme: Only F_SETFL and F_GETFL is current supported //
+                FIXME: Only NONBLOCK flag is supported // FIXME: F_SETFL and F_SETFD are treated as the same thing here.
+                For the case of dup(fd) we //   should actually have F_SETFL only affect one (it is unclear how well we do, but this TODO //   is here to at least document that we might need to do more work here.  Mostly SETFL is
+                //   for mode changes which should persist across fork() boundaries.  Since JVM has no fork //
+                this is not a problem for us.
+            </li>
         </ul>
 
     </div>
-   
-    
+
+
 </div>
