@@ -1,0 +1,73 @@
+﻿@model SATD.Models.Classification
+@{
+    ViewBag.Title = "classification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <form method="get" action="/home/classification?CommentsID=@ViewBag.CommentsID">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h1>Labeling Self-Admitted Technical Debt Comments and Commites</h1></div>
+            <div class="panel-body">
+                @{
+                if (!string.IsNullOrEmpty(@ViewBag.message))
+                { 
+               <div class="alert alert-success">@ViewBag.message</div>
+                }
+                }
+
+                <table class="table table-bordered table-responsive">
+                    <thead style="font-weight:bold">
+                        <tr>
+                            <td style="width:49%"> Comment/Commit</td>
+                            <td style="width:29%">Classification </td>
+                            <td style="width:19%"> Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <p>@ViewBag.Desc</p>
+                                </div>
+
+                                <input type="hidden" name="CommentsID" value="@ViewBag.CommentsID" />
+                                <input type="hidden" name="ParticipantID" value="@ViewBag.ParticipantID" />
+
+
+                            </td>
+                            <td>
+
+                                <div class="form-group">
+                                    @Html.DropDownListFor(Model => Model.ClassificationID, null, "-- Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(Model => Model.ClassificationID, null, new { @class = "text-danger" })
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="form-group col-md-6">
+
+                                    <input type="submit" value="Save" class="btn btn-success" />
+
+                                </div>
+
+                                <div class="form-group col-md-6">
+
+                                    <input type="button" value="Skip" class="btn btn-danger" onclick="@("location.href='"+ Url.Action("classification","home",new { @skip = 1})+ "'")" />
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="panel panel-footer">
+                    <p class="text-danger"> Notes:</p>
+                    <ul>
+                        <li> If the Comments/Commits text not appear, please click on the skip, to get a new one.</li>
+                        <li> If you are not certain of the comments type, you can skip it.</li>
+                        <li> Please try to classify as you can, and try to not less than 30 comments. </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+

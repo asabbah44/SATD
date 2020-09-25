@@ -1,0 +1,57 @@
+﻿@model SATD.Models.participant
+@{
+    ViewBag.Title = "participantInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <form method="get" action="/home/SaveparticipantInfo">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h1>Labeling Self-Admitted Technical Debt Comments and Commites</h1></div>
+            <div class="panel-body">
+                <table class="table table-bordered table-responsive">
+                    <thead style="font-weight:bold">
+                        <tr>
+                            <td style="width:25%"> Email</td>
+                            <td style="width:25%">Education Levels </td>
+                            <td style="width:25%"> Experience years</td>
+                            <td style="width:20%"> Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.TextBoxFor( Model=>Model.Email,"",new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(Model=>Model.Email,"",new { @class="text-danger"})
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="form-group">
+                                    @Html.DropDownListFor(Model => Model.EduLevel,null, "-- Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(Model => Model.EduLevel, "", new { @class = "text-danger" })
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="form-group">
+                                    @Html.DropDownListFor(Model => Model.Experience, null, "-- Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(Model => Model.Experience, "", new { @class = "text-danger" })
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="form-group col-md-6">
+
+                                    <input type="submit" value="Next Step" class="btn btn-success" />
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>

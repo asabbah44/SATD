@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+    <div style="width:300px; height:120px" class="center-block">
+        <img src="~/Birzeit_University_logo.png" class="img-responsive" alt="Birzeit University" />
+    </div>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><h1>Labeling Self-Admitted Technical Debt Comments and Commites</h1></div>
+    <div class="panel-body">
+        <h3>Your task</h3>
+        <ol>
+            <li>After carefully reading the text below, you should select what type of self-admitted technical debt the should be classified as.</li>
+            <li>
+                Choose one of the six labeled from List in the screen (i.e, Design, Defect, Documentation, Requirement, Test or Not technical debt )
+            </li>
+            <li> Please be careful, all comments and commits that will presented are
+            classified as technical debt without type by using tools and other studies.</li>
+            <li>There is no time limit to complete your task, every time you need to repeat the task you will get new inctance </li>
+            <li> To avoid frequently present the same comments, you will enter the valid email address </li>
+            <li> You can start here : <br /><b style="font-size:x-large"> @Html.ActionLink("Start task", "participantInfo", "Home")</b></li>
+        </ol>
+        <hr />
+        <h4> Source code comments</h4>
+        <p class="text-justify">
+            Source code comments are explanation or annotation that written by the developers, comments allow developers to clarify,
+            document, and express concerns about the implementation in an informal method that does not influence the functionality of the program,
+            and are generally ignored by compilers and interpreters..
+        </p>
+        <br />
+        <h4>Commits messages</h4>
+        <p class="text-justify">
+            Commits messages are the express of action that the developers made on the source code and document this action with semantic commits
+        </p>
+        <br />
+        <h4> Technical debt</h4>
+        <p class="text-justify">
+            is a metaphor, coined by Ward Cunningham . It reflects the additional cost that imply to rework caused by a sup-optimal solution instead of
+            using the better approach in software development life cycle. The concept of TD is derived from financial debt,
+            as the Interest resulting from the late payment. Similar to the financial dept, TD has an interest and the cost increases if not pay the debt early,
+            by refactoring the code on the suitable time, to avoid interest in the future.
+        </p>
+        <br />
+        <h4>Self-Admitted technical debt Technical debt - SATD</h4>
+        <p class="text-justify">
+            is a technical debt that written by the developers deliberately, through comments or commits messages
+            , with the knowledge that the implementation is not an optimal solution for the software.
+        </p>
+
+        <br />
+        <b> Self-admitted design debt: </b>
+        These comments indicate that there is a problem with the design of the code. They can be comments about misplaced code,
+        lack of abstraction, long methods, poor implementation,
+        workarounds or a temporary solution. The following source code comments are examples of self-admitted design debt:
+        <br /><br />
+        <ul>
+            <li>
+                //  PR: I do not know what to do if the object class //
+                has multiple defines //      but this is for logging only... -[from apache-ant-1.7.0]
+            </li>
+            <li>
+                // I hate this so much even before I start writing it.
+                // Re-initializing a global in a place where no-one will see it just
+                // feels wrong. Oh well, here goes.” - [from ArgoUml]
+            </li>
+            <li> TODO: - This method is too complex, lets break it up - [from ArgoUml]</li>
+            <li>TODO: really should be a separate class - [from ArgoUml]</li>
+            <li>
+                TODO: move this to components -- the only reason why it's in core is because //
+                it's used as a guinea pig by a couple of tests.-[from apache-jmeter-2.10]
+            </li>
+            <li>
+                // XXXX re-evaluate this //can getSuper work by itself now?
+                //If we're a class instance and the parent is also a class instance //then super means our parent.-[fromjEdit-4.2	]
+            </li>
+        </ul>
+        <b> Self-admitted defect debt: </b>
+        In defect debt comments the author states that a part of the code does not have the expected behavior,
+        meaning that there is a defect in the code.
+        <br /><br />
+        <ul>
+            <li>
+                “// Bug in above method” - [from Apache Jmeter]
+            </li>
+            <li> “// WARNING: the OutputStream version of this doesn’t work!” - [from ArgoUml]</li>
+            <li>
+                // FIXME formatters are not thread-safe-[from apache-ant-1.7.0]
+            </li>
+            <li>
+                // TODO: Something might go wrong during processing. We don't really
+                // want to create the model element until the user releases the mouse // in the place expected.[from-argouml]
+            </li>
+            <li>
+                // todo: is this comment still relevant ??
+                // FIXME: need to use a SAXSource as the source for the transform
+                // so we can plug in our own entity resolver-[from apache-ant-1.7.0]
+            </li>
+        </ul>
+        <b> Self-admitted test debt: </b>
+        <br /><br />
+        <ul>
+            <li>// TODO should this be done even if not a full test plan? // and what if load fails?-[from apache-jmeter-2.10]</li>
+            <li>// not sure whether this test is needed but cost nothing to put. // hope it will be reviewed by anybody competent-[from apache-ant-1.7.0]</li>
+            <li>// cleanAllExtentsBut(model); // TODO: why is this causing a crash?!?-[from ArgoUml] </li>
+            <li>//TODO: Test Mac keyboard accelerator changes done here by mlivingstone // shortcut key</li>
+        </ul>
+
+        <b> Self-admitted requirement  debt: </b>
+        <br /><br />
+        <ul>
+            <li>
+                “/TODO no methods yet for getClassname” - [from Apache Ant]
+            </li>
+            <li>
+                “//TODO no method for newInstance using a reverse-classloader” - [from Apache Ant]
+            </li>
+            <li>
+                “TODO: The copy function is not yet * completely implemented - so we will * have some exceptions here and there.*/” - [from ArgoUml]
+            </li>
+            <li>
+                // TODO support multiple signers -[from apache-jmeter-2.10]
+            </li>
+            <li>
+                // Set the overall status for the transaction sample // TODO: improve, e.g. by adding counts to the SampleResult class-[from apache-jmeter-2.10]
+            </li>
+        </ul>
+
+        <b> Self-admitted documentation  debt: </b>
+        <br /><br />
+        <ul>
+            <li>* **FIXME** This function needs documentation-[from columba-1.4-src] </li>
+            <li> // FIXME: Document difference between warn and warning (or rename one better)-[from jruby-1.4.0] </li>
+            <li>
+                “// TODO Document the reason for this” - [from Apache Jmeter]
+            </li>
+            <li>// Fixme: Only F_SETFL and F_GETFL is current supported //
+            FIXME: Only NONBLOCK flag is supported // FIXME: F_SETFL and F_SETFD are treated as the same thing here.  
+            For the case of dup(fd) we //   should actually have F_SETFL only affect one (it is unclear how well we do, but this TODO //   is here to at least document that we might need to do more work here.  Mostly SETFL is 
+            //   for mode changes which should persist across fork() boundaries.  Since JVM has no fork // 
+            this is not a problem for us.</li>
+        </ul>
+
+    </div>
+   
+    
+</div>

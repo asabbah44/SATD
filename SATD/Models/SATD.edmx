@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SATDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Classification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParticipantID" Type="int" Nullable="false" />
+          <Property Name="CommentsID" Type="int" Nullable="false" />
+          <Property Name="ClassificationID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Project" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CommentsText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CommTypes" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lookups">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="LookUpType" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="participant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="EduLevel" Type="int" />
+          <Property Name="Experience" Type="int" />
+        </EntityType>
+        <Association Name="FK_Classification_Comments">
+          <End Role="Comments" Type="Self.Comments" Multiplicity="1" />
+          <End Role="Classification" Type="Self.Classification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Classification">
+              <PropertyRef Name="CommentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classification_Lookups">
+          <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+          <End Role="Classification" Type="Self.Classification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookups">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Classification">
+              <PropertyRef Name="ClassificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classification_participant">
+          <End Role="participant" Type="Self.participant" Multiplicity="1" />
+          <End Role="Classification" Type="Self.Classification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participant">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Classification">
+              <PropertyRef Name="ParticipantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Lookups">
+          <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookups">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="CommTypes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SATDModelStoreContainer">
+          <EntitySet Name="Classification" EntityType="Self.Classification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lookups" EntityType="Self.Lookups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="participant" EntityType="Self.participant" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Classification_Comments" Association="Self.FK_Classification_Comments">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="Classification" EntitySet="Classification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classification_Lookups" Association="Self.FK_Classification_Lookups">
+            <End Role="Lookups" EntitySet="Lookups" />
+            <End Role="Classification" EntitySet="Classification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classification_participant" Association="Self.FK_Classification_participant">
+            <End Role="participant" EntitySet="participant" />
+            <End Role="Classification" EntitySet="Classification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Lookups" Association="Self.FK_Comments_Lookups">
+            <End Role="Lookups" EntitySet="Lookups" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SATDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Classification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParticipantID" Type="Int32" Nullable="false" />
+          <Property Name="CommentsID" Type="Int32" Nullable="false" />
+          <Property Name="ClassificationID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Classification_Comments" FromRole="Classification" ToRole="Comments" />
+          <NavigationProperty Name="Lookups" Relationship="Self.FK_Classification_Lookups" FromRole="Classification" ToRole="Lookups" />
+          <NavigationProperty Name="participant" Relationship="Self.FK_Classification_participant" FromRole="Classification" ToRole="participant" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Project" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommentsText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommTypes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Classification" Relationship="Self.FK_Classification_Comments" FromRole="Comments" ToRole="Classification" />
+          <NavigationProperty Name="Lookups" Relationship="Self.FK_Comments_Lookups" FromRole="Comments" ToRole="Lookups" />
+        </EntityType>
+        <EntityType Name="Lookups">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="LookUpType" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Classification" Relationship="Self.FK_Classification_Lookups" FromRole="Lookups" ToRole="Classification" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Lookups" FromRole="Lookups" ToRole="Comments" />
+        </EntityType>
+        <EntityType Name="participant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EduLevel" Type="Int32" />
+          <Property Name="Experience" Type="Int32" />
+          <NavigationProperty Name="Classification" Relationship="Self.FK_Classification_participant" FromRole="participant" ToRole="Classification" />
+        </EntityType>
+        <Association Name="FK_Classification_Comments">
+          <End Role="Comments" Type="Self.Comments" Multiplicity="1" />
+          <End Role="Classification" Type="Self.Classification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Classification">
+              <PropertyRef Name="CommentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classification_Lookups">
+          <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+          <End Role="Classification" Type="Self.Classification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookups">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Classification">
+              <PropertyRef Name="ClassificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classification_participant">
+          <End Role="participant" Type="Self.participant" Multiplicity="1" />
+          <End Role="Classification" Type="Self.Classification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="participant">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Classification">
+              <PropertyRef Name="ParticipantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Lookups">
+          <End Role="Lookups" Type="Self.Lookups" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookups">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="CommTypes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SATDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Classification" EntityType="Self.Classification" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" />
+          <EntitySet Name="Lookups" EntityType="Self.Lookups" />
+          <EntitySet Name="participant" EntityType="Self.participant" />
+          <AssociationSet Name="FK_Classification_Comments" Association="Self.FK_Classification_Comments">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="Classification" EntitySet="Classification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classification_Lookups" Association="Self.FK_Classification_Lookups">
+            <End Role="Lookups" EntitySet="Lookups" />
+            <End Role="Classification" EntitySet="Classification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classification_participant" Association="Self.FK_Classification_participant">
+            <End Role="participant" EntitySet="participant" />
+            <End Role="Classification" EntitySet="Classification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Lookups" Association="Self.FK_Comments_Lookups">
+            <End Role="Lookups" EntitySet="Lookups" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SATDModelStoreContainer" CdmEntityContainer="SATDEntities">
+          <EntitySetMapping Name="Classification">
+            <EntityTypeMapping TypeName="SATDModel.Classification">
+              <MappingFragment StoreEntitySet="Classification">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ParticipantID" ColumnName="ParticipantID" />
+                <ScalarProperty Name="CommentsID" ColumnName="CommentsID" />
+                <ScalarProperty Name="ClassificationID" ColumnName="ClassificationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="SATDModel.Comments">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="CommentsText" ColumnName="CommentsText" />
+                <ScalarProperty Name="CommTypes" ColumnName="CommTypes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lookups">
+            <EntityTypeMapping TypeName="SATDModel.Lookups">
+              <MappingFragment StoreEntitySet="Lookups">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LookUpType" ColumnName="LookUpType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="participant">
+            <EntityTypeMapping TypeName="SATDModel.participant">
+              <MappingFragment StoreEntitySet="participant">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EduLevel" ColumnName="EduLevel" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
