@@ -8,6 +8,15 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h1>Labeling Self-Admitted Technical Debt Comments and Commites</h1></div>
             <div class="panel-body">
+                <div class="alert alert-info">
+                    <div class="col-md-6">
+                         Participant Email: <strong>@ViewBag.ParticipantEmail</strong>
+                    </div>
+                    <div class="col-md-6">
+                        Participant Comments classifed : <strong>@ViewBag.NoOfComments</strong>
+                    </div>
+                    <br />
+                </div>
                 @{
                 if (!string.IsNullOrEmpty(@ViewBag.message))
                 { 

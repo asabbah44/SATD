@@ -38,7 +38,7 @@ namespace SATD.Controllers
             if (ModelState.IsValid)
             {
                 var CheckEmailExist = (from i in DBentities.participant
-                                      where i.Email == participant.Email
+                                      where i.Email.ToLower() == participant.Email.ToLower()
                                       select i).FirstOrDefault();
                 if (CheckEmailExist!= null)
                 {
@@ -158,7 +158,10 @@ namespace SATD.Controllers
                 Counter++;
             }
             // the number of comments the the participent allow to classify 
-            if (DBentities.Classification.Where(a => a.ParticipantID == Participentid).Count() != DBentities.Comments.Count())
+            int NumberOfCommentsByParticipant = DBentities.Classification.Where(a => a.ParticipantID == Participentid).Count();
+            ViewBag.NoOfComments = NumberOfCommentsByParticipant;
+            ViewBag.ParticipantEmail = DBentities.participant.Where(a => a.ID == Participentid).Select(a => a.Email).FirstOrDefault();
+            if (NumberOfCommentsByParticipant != DBentities.Comments.Count())
             {
                 var GetComment = (from i in DBentities.Comments
                                   where i.ID == NextComments
