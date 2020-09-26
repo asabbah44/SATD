@@ -73,7 +73,36 @@
                     <ul>
                         <li> If the Comments/Commits text not appear, please click on the skip, to get a new one.</li>
                         <li> If you are not certain of the comments type, you can skip it.</li>
-                        <li> Please try to classify as you can, and try to not less than 30 comments. </li>
+                        <li> Please try to classify as you can, and try to not less than 20 comments. </li>
+                    </ul>
+
+                    <p class="text-danger">Definition:</p>
+                    <ul>
+                        <li>
+                            <b> Design debt: </b>
+                            Indicate that there is a problem with the design of the code. They can be comments about misplaced code,
+                            lack of abstraction, long methods, poor implementation,workarounds or a temporary solution. <b>Eg.</b> //TODO This method is too complex
+                        </li>
+                        <li>
+
+                            <b> Defect debt: </b>
+                            In defect debt comments the author states that a part of the code does not have the expected behavior,
+                            meaning that there is a defect in the code. <b>Eg.</b> // Bug in above method
+
+                        </li>
+                        <li>
+                            <b> Requirement debt: </b>
+                            Comments indicate that there is an ambiguous requirement that leads to code smell.<b>Eg.</b> // TODO support multiple signers
+                        </li>
+                        <li>
+                            <b> Test debt: </b>
+                            Lack of tests, inadequate test coverage, and improper test design. <b>Eg.</b>//TODO - need a lot more tests
+                        </li>
+                        <li>
+                            <b> documentation debt: </b>
+                            Incomplete comments, lack of code comments,  no documentation for important concerns,
+                            poor documentation, and outdated documentation. <b>Eg.</b> // TODO Document the reason for this
+                        </li>
                     </ul>
                 </div>
             </div>

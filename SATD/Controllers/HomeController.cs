@@ -150,7 +150,7 @@ namespace SATD.Controllers
                 var checkNumberOfCommentsClassified = (from j in DBentities.Classification
                                                        where j.CommentsID == NextComments
                                                        select j).Count();
-                if (checkNumberOfCommentsClassified <=4)
+                if (checkNumberOfCommentsClassified <=3)
                 {
                     flag = 0;
 
