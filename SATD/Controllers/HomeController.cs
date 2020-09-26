@@ -91,7 +91,11 @@ namespace SATD.Controllers
 
                     else
                     {
+                        // If submit without select from list 
                         int Participentid = Int32.Parse(Session["userID"].ToString());
+                        int NumberOfCommentsByParticipant = DBentities.Classification.Where(a => a.ParticipantID == Participentid).Count();
+                        ViewBag.NoOfComments = NumberOfCommentsByParticipant;
+                        ViewBag.ParticipantEmail = DBentities.participant.Where(a => a.ID == Participentid).Select(a => a.Email).FirstOrDefault();
                         var GetComment = (from i in DBentities.Comments
                                           where i.ID == classification.CommentsID
                                           select i).FirstOrDefault();
