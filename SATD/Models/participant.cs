@@ -22,8 +22,8 @@ namespace SATD.Models
     
         public int ID { get; set; }
         public string Email { get; set; }
-        public Nullable<int> EduLevel { get; set; }
         public Nullable<int> Experience { get; set; }
+        public Nullable<int> JobTitle { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Classification> Classification { get; set; }

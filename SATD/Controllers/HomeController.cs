@@ -16,7 +16,7 @@ namespace SATD.Controllers
    
         private void FillDropListForParticipent()
         {
-            ViewBag.EduLevel = new SelectList(DBentities.Lookups.Where(a => a.LookUpType == 2), "ID", "Description");
+            ViewBag.JobTitle = new SelectList(DBentities.Lookups.Where(a => a.LookUpType == 2), "ID", "Description");
             ViewBag.Experience = new SelectList(DBentities.Lookups.Where(a => a.LookUpType == 3), "ID", "Description");
         }
 
@@ -49,7 +49,7 @@ namespace SATD.Controllers
                 {
                     participant newparticipant = new participant();
                     newparticipant.Email = participant.Email;
-                    newparticipant.EduLevel = participant.EduLevel;
+                    newparticipant.JobTitle = participant.JobTitle;
                     newparticipant.Experience = participant.Experience;
                     DBentities.participant.Add(newparticipant);
                     DBentities.SaveChanges();

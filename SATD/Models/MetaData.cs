@@ -13,7 +13,7 @@ namespace SATD.Models
         [EmailAddress]
         public string Email;
         [Required]
-        public Nullable<int> EduLevel;
+        public Nullable<int> JobTitle;
         [Required]
         public Nullable<int> Experience;
     }

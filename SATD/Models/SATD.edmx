@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SATDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SATDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Classification">
           <Key>
             <PropertyRef Name="ID" />
@@ -37,7 +37,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" />
-          <Property Name="EduLevel" Type="int" />
+          <Property Name="JobTitle" Type="int" />
           <Property Name="Experience" Type="int" />
         </EntityType>
         <Association Name="FK_Classification_Comments">
@@ -110,8 +110,7 @@
             <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SATDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -154,9 +153,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="EduLevel" Type="Int32" />
           <Property Name="Experience" Type="Int32" />
           <NavigationProperty Name="Classification" Relationship="Self.FK_Classification_participant" FromRole="participant" ToRole="Classification" />
+          <Property Name="JobTitle" Type="Int32" />
         </EntityType>
         <Association Name="FK_Classification_Comments">
           <End Role="Comments" Type="Self.Comments" Multiplicity="1" />
@@ -266,9 +265,9 @@
           <EntitySetMapping Name="participant">
             <EntityTypeMapping TypeName="SATDModel.participant">
               <MappingFragment StoreEntitySet="participant">
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="EduLevel" ColumnName="EduLevel" />
                 <ScalarProperty Name="Experience" ColumnName="Experience" />
               </MappingFragment>
             </EntityTypeMapping>
