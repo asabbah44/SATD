@@ -124,27 +124,46 @@ namespace SATD.Controllers
             Random rand = new Random();
             int NextComments =  rand.Next(1, DBentities.Comments.Count());
             int flag = 1;
-            int Counter = 0;
+            int  Counter = 0;
             //The participent classified this comments befor
-            while (flag == 1 && Counter<= DBentities.Comments.Count())
+            while (flag == 1 && Counter <= DBentities.Comments.Count())
             {
+                var OnlyCommentsClassifedByAuther = (from i in DBentities.Classification
+                                                     where i.ParticipantID == 1
+                                                     select i.CommentsID).ToArray();
+
+                if (Participentid != 1)
+                {
+                    NextComments = OnlyCommentsClassifedByAuther[rand.Next(OnlyCommentsClassifedByAuther.Count())];
+                }
+                
                 var checkParticipent = (from j in DBentities.Classification
                                         where j.ParticipantID == Participentid && j.CommentsID == NextComments
                                         select j).FirstOrDefault();
-                if (checkParticipent == null)
+
+                if (checkParticipent == null && NextComments != 0)
                 {
                     flag = 0;
-                    
+
                 }
+
                 else
                 {
                     NextComments++;
+                   
+                }
+
+                if (NextComments == DBentities.Comments.Count())
+                {
+                    ViewBag.message = "You classify all comments and commits. Thank you";
+                    break;
+
                 }
                 Counter++;
             }
             flag = 1;
             Counter = 0;
-            // Max number of classification 4 for ecah comments
+            // Max number of classification 3 for ecah comments
             while (flag == 1 && Counter <= DBentities.Comments.Count())
             {
                 var checkNumberOfCommentsClassified = (from j in DBentities.Classification
